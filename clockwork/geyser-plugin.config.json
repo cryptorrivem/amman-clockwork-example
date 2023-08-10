@@ -1,0 +1,7 @@
+{
+  "keypath": "./clockwork/keys/authority.json",
+  "libpath": "./runtime_deps/v2.0.18/libclockwork_plugin.so",
+  "thread_count": 10,
+  "transaction_timeout_threshold": 150,
+  "worker_id": 0
+}

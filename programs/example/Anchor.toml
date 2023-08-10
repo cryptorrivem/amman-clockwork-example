@@ -1,0 +1,21 @@
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+example = "DSg74Tu4w2urxxmw7gdTz4GZUE4DCy2C7RrPr3mRgmuB"
+
+[programs.devnet]
+example = "DSg74Tu4w2urxxmw7gdTz4GZUE4DCy2C7RrPr3mRgmuB"
+
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Localnet"
+wallet = "../../keys/authority.json"
+
+[scripts]
+test = "cd clients/js && sh run-test.sh -a"
+

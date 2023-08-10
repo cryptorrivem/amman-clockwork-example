@@ -1,0 +1,280 @@
+{
+  "version": "0.1.0",
+  "name": "example",
+  "instructions": [
+    {
+      "name": "stake",
+      "accounts": [
+        {
+          "name": "userStakedMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "Owner of the NFT to stake"
+          ]
+        },
+        {
+          "name": "thread",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Address to assign to the newly created thread."
+          ]
+        },
+        {
+          "name": "threadAuthority",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The pda that will own and manage the thread."
+          ]
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Token metadata program accounts"
+          ]
+        },
+        {
+          "name": "token",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenRecord",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "metadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "edition",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authorizationRules",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Programs"
+          ]
+        },
+        {
+          "name": "sysvarInstruction",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mplTokenMetadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mplTokenAuthRulesProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "threadProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "lockTime",
+          "type": "i64"
+        }
+      ],
+      "defaultOptionalAccounts": true
+    },
+    {
+      "name": "expire",
+      "accounts": [
+        {
+          "name": "userStakedMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [],
+      "defaultOptionalAccounts": true
+    },
+    {
+      "name": "unstake",
+      "accounts": [
+        {
+          "name": "userStakedMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "Owner of the NFT to unstake"
+          ]
+        },
+        {
+          "name": "thread",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "threadAuthority",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The Thread Admin",
+            "The authority that was used as a seed to derive the thread address",
+            "`thread_authority` should equal `thread.thread_authority`"
+          ]
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Token metadata program accounts"
+          ]
+        },
+        {
+          "name": "token",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenRecord",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "metadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "edition",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authorizationRules",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Programs"
+          ]
+        },
+        {
+          "name": "sysvarInstruction",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mplTokenMetadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mplTokenAuthRulesProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "threadProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [],
+      "defaultOptionalAccounts": true
+    }
+  ],
+  "accounts": [
+    {
+      "name": "UserStakedMint",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "startTime",
+            "type": "i64"
+          },
+          {
+            "name": "lockTime",
+            "type": "i64"
+          },
+          {
+            "name": "expired",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NotOwnerOfMint",
+      "msg": "NFT does not belong to user"
+    },
+    {
+      "code": 6001,
+      "name": "LockTimeNotOver",
+      "msg": "NFT lock time is not over"
+    },
+    {
+      "code": 6002,
+      "name": "NotExpired",
+      "msg": "NFT lock must be expired before unstaking"
+    }
+  ],
+  "metadata": {
+    "address": "DSg74Tu4w2urxxmw7gdTz4GZUE4DCy2C7RrPr3mRgmuB",
+    "origin": "anchor",
+    "binaryVersion": "0.27.0",
+    "libVersion": "0.27.0"
+  }
+}

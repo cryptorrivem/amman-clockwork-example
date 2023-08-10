@@ -1,0 +1,40 @@
+{
+  "scripts": {
+    "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
+    "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
+    "api:gen": "cd clients/js && npm run api:gen",
+    "programs:build": "./configs/program-scripts/build.sh",
+    "programs:test": "./configs/program-scripts/test.sh",
+    "programs:clean": "rm -rf ./programs/.bin",
+    "generate": "npm generate:idls && npm generate:clients",
+    "generate:idls": "node ./configs/shank.js",
+    "generate:clients": "node ./configs/kinobi.js",
+    "validator": "CI=1 amman start --config ./configs/validator.js",
+    "validator:debug": "(cd clockwork && sh setup.sh &>/dev/null) & sleep 1 && amman start --config ./configs/validator.js",
+    "validator:stop": "amman stop"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.27.0"
+  },
+  "devDependencies": {
+    "@clockwork-xyz/sdk": "^0.3.4",
+    "@metaplex-foundation/amman": "../../../../metaplex/amman/amman",
+    "@metaplex-foundation/amman-client": "^0.2.4",
+    "@metaplex-foundation/mpl-token-auth-rules": "^2.0.0",
+    "@metaplex-foundation/mpl-token-metadata": "^2.11.1",
+    "@metaplex-foundation/shank-js": "^0.1.0",
+    "@solana/spl-token": "^0.3.8",
+    "@types/bn.js": "^5.1.0",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.0.0",
+    "@types/tape": "^5.6.0",
+    "chai": "^4.3.4",
+    "cpr": "^3.0.1",
+    "mocha": "^9.0.3",
+    "prettier": "^2.6.2",
+    "spok": "^1.5.5",
+    "tape": "^5.6.3",
+    "ts-mocha": "^10.0.0",
+    "typescript": "^4.3.5"
+  }
+}
