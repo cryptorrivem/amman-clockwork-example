@@ -1,6 +1,7 @@
 AUTHORITY_KEYPAIR=keys/authority.json
 solana-keygen new -o $AUTHORITY_KEYPAIR --no-bip39-passphrase --force
 solana config set --keypair $AUTHORITY_KEYPAIR
+solana config set --url http://127.0.0.1:8899
 
 sleep 5
 
